@@ -15,15 +15,10 @@
  */
 package com.github.springtestdbunit.annotation;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
+
+import java.lang.annotation.*;
 
 /**
  * Test annotation that can be used to assert that a database is in given state after tests have run.
@@ -45,6 +40,8 @@ public @interface ExpectedDatabase {
 	 * @see DbUnitConfiguration#dataSetLoader()
 	 */
 	String value();
+
+   String connection();
 
 	/**
 	 * Database assertion mode to use. Default is {@link DatabaseAssertionMode#DEFAULT}.

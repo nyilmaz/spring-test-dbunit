@@ -15,8 +15,10 @@
  */
 package com.github.springtestdbunit.dbunitrule.expected;
 
-import javax.sql.DataSource;
-
+import com.github.springtestdbunit.DbUnitRule;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
+import com.github.springtestdbunit.entity.EntityAssert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,10 +27,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.springtestdbunit.DbUnitRule;
-import com.github.springtestdbunit.annotation.ExpectedDatabase;
-import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
-import com.github.springtestdbunit.entity.EntityAssert;
+import javax.sql.DataSource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/META-INF/dbunit-context.xml")
@@ -45,7 +44,7 @@ public class ExpectedNonStrictOnMethodTest {
 	private EntityAssert entityAssert;
 
 	@Test
-	@ExpectedDatabase(value = "/META-INF/db/expected_nonstrict.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+	@ExpectedDatabase(connection = "dataSource", value = "/META-INF/db/expected_nonstrict.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
 	public void shouldNotFailEvenThoughExpectedTableDoesNotSpecifyAllColumns() {
 		this.entityAssert.assertValues("existing1", "existing2");
 	}

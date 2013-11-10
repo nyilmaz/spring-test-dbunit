@@ -107,19 +107,20 @@ class DbUnitRunner {
 			}
 			return;
 		}
-		Collection<IDatabaseConnection> connections = testContext.getConnectionsMap().values();
-      for(IDatabaseConnection connection : connections) {
+
+      for(ExpectedDatabase annotation : annotations) {
+         String connectionName = annotation.connection();
+         IDatabaseConnection connection = testContext.getConnectionsMap().get(connectionName);
          IDataSet actualDataSet = connection.createDataSet();
-         for (ExpectedDatabase annotation : annotations) {
-            IDataSet expectedDataSet = loadDataset(testContext, annotation.value());
-            if (expectedDataSet != null) {
-               if (logger.isDebugEnabled()) {
-                  logger.debug("Veriftying @DatabaseTest expectation using " + annotation.value());
-               }
-               DatabaseAssertion assertion = annotation.assertionMode().getDatabaseAssertion();
-               assertion.assertEquals(expectedDataSet, actualDataSet);
+         IDataSet expectedDataSet = loadDataset(testContext, annotation.value());
+         if (expectedDataSet != null) {
+            if (logger.isDebugEnabled()) {
+               logger.debug("Veriftying @DatabaseTest expectation using " + annotation.value());
             }
+            DatabaseAssertion assertion = annotation.assertionMode().getDatabaseAssertion();
+            assertion.assertEquals(expectedDataSet, actualDataSet);
          }
+
       }
 
 	}

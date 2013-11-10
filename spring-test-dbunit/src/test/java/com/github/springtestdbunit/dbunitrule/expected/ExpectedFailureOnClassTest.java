@@ -15,8 +15,10 @@
  */
 package com.github.springtestdbunit.dbunitrule.expected;
 
-import javax.sql.DataSource;
-
+import com.github.springtestdbunit.DbUnitRule;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.entity.EntityAssert;
+import com.github.springtestdbunit.testutils.MustFailDbUnitRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,14 +27,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.springtestdbunit.DbUnitRule;
-import com.github.springtestdbunit.annotation.ExpectedDatabase;
-import com.github.springtestdbunit.entity.EntityAssert;
-import com.github.springtestdbunit.testutils.MustFailDbUnitRule;
+import javax.sql.DataSource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/META-INF/dbunit-context.xml")
-@ExpectedDatabase("/META-INF/db/expectedfail.xml")
+@ExpectedDatabase(connection = "dataSource", value = "/META-INF/db/expectedfail.xml")
 @Transactional
 public class ExpectedFailureOnClassTest {
 

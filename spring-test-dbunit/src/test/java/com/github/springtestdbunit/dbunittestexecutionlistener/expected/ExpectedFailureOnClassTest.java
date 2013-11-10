@@ -31,7 +31,7 @@ import com.github.springtestdbunit.testutils.MustFailDbUnitTestExecutionListener
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/META-INF/dbunit-context.xml")
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, MustFailDbUnitTestExecutionListener.class })
-@ExpectedDatabase("/META-INF/db/expectedfail.xml")
+@ExpectedDatabase(connection = "dataSource", value = "/META-INF/db/expectedfail.xml")
 @Transactional
 public class ExpectedFailureOnClassTest {
 
