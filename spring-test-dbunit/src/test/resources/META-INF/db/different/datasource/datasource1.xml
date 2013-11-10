@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+   <example1 field1="Spring" field2="is awesome"/>
+   <example1 field1="JUnit" field2="is useful"/>
+</dataset>

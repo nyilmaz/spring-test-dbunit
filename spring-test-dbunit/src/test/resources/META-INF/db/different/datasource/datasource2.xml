@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+   <example2 value1="32" value2="42"/>
+   <example2 value1="1" value2="2"/>
+   <example2 value1="3" value2="5"/>
+</dataset>

@@ -1,0 +1,4 @@
+CREATE TABLE example2
+(value1 INTEGER,
+value2 INTEGER,
+PRIMARY KEY(value1));
