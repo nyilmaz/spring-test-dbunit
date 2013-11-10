@@ -160,10 +160,11 @@ class DbUnitRunner {
                      logger.info("Loading dataset " + dataSetLocation + " to connection:" + connectionName);
                   }
                }
-                  dbUnitDatabaseOperation.execute(connection, dataSet);
+               dbUnitDatabaseOperation.execute(connection, dataSet);
                lastOperation = operation;
             }
          }
+         lastOperation = null;
       }
    }
 
