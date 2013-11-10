@@ -15,6 +15,7 @@
  */
 package com.github.springtestdbunit.dbunittestexecutionlistener.setup;
 
+import com.github.springtestdbunit.annotation.DatabaseConnectionSetup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class InsertSetupOnMethodTest {
 	private EntityAssert entityAssert;
 
 	@Test
-	@DatabaseSetup(type = DatabaseOperation.INSERT, value = "/META-INF/db/insert.xml")
+	@DatabaseSetup(connections = @DatabaseConnectionSetup(connectionName = "dataSource", type = DatabaseOperation.INSERT, value = "/META-INF/db/insert.xml"))
 	public void test() throws Exception {
 		this.entityAssert.assertValues("existing1", "existing2", "fromDbUnit");
 	}

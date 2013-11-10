@@ -15,6 +15,7 @@
  */
 package com.github.springtestdbunit.dbunittestexecutionlistener.setup;
 
+import com.github.springtestdbunit.annotation.DatabaseConnectionSetup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ import com.github.springtestdbunit.entity.EntityAssert;
 @ContextConfiguration("/META-INF/dbunit-context.xml")
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionDbUnitTestExecutionListener.class })
 @Transactional
-@DatabaseSetup(type = DatabaseOperation.TRUNCATE_TABLE, value = "/META-INF/db/delete.xml")
+@DatabaseSetup(connections = @DatabaseConnectionSetup(connectionName = "dataSource", type = DatabaseOperation.TRUNCATE_TABLE, value = "/META-INF/db/delete.xml"))
 public class TruncateSetupOnClassTest {
 
 	@Autowired

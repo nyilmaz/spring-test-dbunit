@@ -15,13 +15,13 @@
  */
 package com.github.springtestdbunit;
 
-import java.lang.reflect.Method;
-
+import com.github.springtestdbunit.dataset.DataSetLoader;
+import com.github.springtestdbunit.operation.DatabaseOperationLookup;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 
-import com.github.springtestdbunit.dataset.DataSetLoader;
-import com.github.springtestdbunit.operation.DatabaseOperationLookup;
+import java.lang.reflect.Method;
+import java.util.Map;
 
 /**
  * Provides context for the {@link DbUnitRunner}.
@@ -34,7 +34,7 @@ interface DbUnitTestContext {
 	 * Returns the {@link IDatabaseConnection} that should be used when performing database setup and teardown.
 	 * @return The connection
 	 */
-	IDatabaseConnection getConnection();
+	Map<String, IDatabaseConnection> getConnectionsMap();
 
 	/**
 	 * Returns the {@link DataSetLoader} that should be used to load {@link IDataSet}s.

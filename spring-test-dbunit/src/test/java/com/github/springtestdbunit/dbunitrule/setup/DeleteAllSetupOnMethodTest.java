@@ -15,8 +15,11 @@
  */
 package com.github.springtestdbunit.dbunitrule.setup;
 
-import javax.sql.DataSource;
-
+import com.github.springtestdbunit.DbUnitRule;
+import com.github.springtestdbunit.annotation.DatabaseConnectionSetup;
+import com.github.springtestdbunit.annotation.DatabaseOperation;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.entity.EntityAssert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,10 +28,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.springtestdbunit.DbUnitRule;
-import com.github.springtestdbunit.annotation.DatabaseOperation;
-import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.github.springtestdbunit.entity.EntityAssert;
+import javax.sql.DataSource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/META-INF/dbunit-context.xml")
@@ -45,7 +45,7 @@ public class DeleteAllSetupOnMethodTest {
 	private EntityAssert entityAssert;
 
 	@Test
-	@DatabaseSetup(type = DatabaseOperation.DELETE_ALL, value = "/META-INF/db/delete.xml")
+	@DatabaseSetup(connections = @DatabaseConnectionSetup(connectionName = "dataSource", type = DatabaseOperation.DELETE_ALL, value = "/META-INF/db/delete.xml"))
 	public void test() throws Exception {
 		this.entityAssert.assertValues();
 	}

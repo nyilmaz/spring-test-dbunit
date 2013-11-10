@@ -1,7 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fdaa9a9d-0084-40b7-9935-f7756168d0e9" name="Default" comment="" />
+    <list default="true" id="fdaa9a9d-0084-40b7-9935-f7756168d0e9" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/CleanInsertSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/CleanInsertSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/CleanInsertSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/CleanInsertSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/CleanInsertSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/CleanInsertSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/CleanInsertSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/CleanInsertSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/annotation/DatabaseSetup.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/annotation/DatabaseSetup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/annotation/DatabaseTearDown.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/annotation/DatabaseTearDown.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/annotation/DbUnitConfiguration.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/annotation/DbUnitConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitRule.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitRule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/DbUnitRuleTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/DbUnitRuleTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitRunner.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitRunner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitTestContext.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitTestContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitTestExecutionListener.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitTestExecutionListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/DbUnitTestExecutionListenerPrepareTests.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/DbUnitTestExecutionListenerPrepareTests.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/DeleteAllSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/DeleteAllSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/DeleteAllSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/DeleteAllSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/DeleteAllSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/DeleteAllSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/DeleteAllSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/DeleteAllSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/DeleteSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/DeleteSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/DeleteSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/DeleteSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/DeleteSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/DeleteSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/DeleteSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/DeleteSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/InsertSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/InsertSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/InsertSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/InsertSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/InsertSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/InsertSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/InsertSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/InsertSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/MixedSetupOnClassAndMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/MixedSetupOnClassAndMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/MixedSetupOnClassAndMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/MixedSetupOnClassAndMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/MultipleInsertSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/MultipleInsertSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/MultipleInsertSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/MultipleInsertSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/RefereshSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/RefereshSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/RefereshSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/RefereshSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/RefereshSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/RefereshSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/RefereshSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/RefereshSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/TruncateSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/TruncateSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/TruncateSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/TruncateSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/TruncateSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/TruncateSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/TruncateSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/TruncateSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/UpdateSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/UpdateSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/UpdateSetupOnClassTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/UpdateSetupOnClassTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/UpdateSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/UpdateSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/UpdateSetupOnMethodTest.java" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/UpdateSetupOnMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/resources/META-INF/dbunit-context.xml" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/resources/META-INF/dbunit-context.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/src/test/resources/log4j.xml" afterPath="$PROJECT_DIR$/spring-test-dbunit/src/test/resources/log4j.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-test-dbunit/pom.xml" afterPath="$PROJECT_DIR$/spring-test-dbunit/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="spring-test-dbunit-parent.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="fdaa9a9d-0084-40b7-9935-f7756168d0e9" time="1383923992982" ignored="false" />
@@ -48,10 +95,6 @@
     <file path="/create-example1.sql" changelist="fdaa9a9d-0084-40b7-9935-f7756168d0e9" time="1384090233235" ignored="false" />
     <file path="/profiles-search.xml" changelist="fdaa9a9d-0084-40b7-9935-f7756168d0e9" time="1384092316401" ignored="false" />
     <file path="$USER_HOME$/LocalProjects/ist/match/plug/profile-plug/src/test/resources/testdata/profiles-search.xml" changelist="fdaa9a9d-0084-40b7-9935-f7756168d0e9" time="1384092404437" ignored="false" />
-    <file path="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/annotation/DatabaseTearDown.java" changelist="fdaa9a9d-0084-40b7-9935-f7756168d0e9" time="1384092790713" ignored="false" />
-    <file path="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/annotation/DatabaseSetup.java" changelist="fdaa9a9d-0084-40b7-9935-f7756168d0e9" time="1384092790715" ignored="false" />
-    <file path="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitTestContext.java" changelist="fdaa9a9d-0084-40b7-9935-f7756168d0e9" time="1384092790715" ignored="false" />
-    <file path="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/annotation/DbUnitConfiguration.java" changelist="fdaa9a9d-0084-40b7-9935-f7756168d0e9" time="1384092790715" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +147,7 @@
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitRule.java" line="137" class="com.github.springtestdbunit.DbUnitRule.DbUnitTestContextAdapter" package="com.github.springtestdbunit">
+      <breakpoint url="file://$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitRule.java" line="142" class="com.github.springtestdbunit.DbUnitRule.DbUnitTestContextAdapter" package="com.github.springtestdbunit">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -132,7 +175,7 @@
       <file leaf-file-name="CleanInsertSetupOnClassTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/CleanInsertSetupOnClassTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="13" selection-start="1751" selection-end="1751" vertical-scroll-proportion="0.0">
+            <state line="37" column="13" selection-start="1893" selection-end="1893" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -141,16 +184,16 @@
       <file leaf-file-name="CleanInsertSetupOnClassTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunitrule/setup/CleanInsertSetupOnClassTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="13" selection-start="1483" selection-end="1483" vertical-scroll-proportion="0.0">
+            <state line="36" column="13" selection-start="1624" selection-end="1624" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dbunit-context.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="dbunit-context.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spring-test-dbunit/src/test/resources/META-INF/dbunit-context.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="84" selection-start="771" selection-end="771" vertical-scroll-proportion="0.5113636">
+            <state line="11" column="84" selection-start="951" selection-end="951" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -159,22 +202,17 @@
       <file leaf-file-name="DbUnitTestExecutionListener.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitTestExecutionListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="0" selection-start="5506" selection-end="5506" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1384092789000" expanded="true" signature="4068:4076" placeholder="&lt;~&gt;" />
-                <marker date="1384092789000" expanded="true" signature="5572:5601" placeholder="&lt;~&gt;" />
-              </folding>
+            <state line="122" column="0" selection-start="5917" selection-end="5917" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DbUnitRunner.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="DbUnitRunner.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitRunner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="45" selection-start="5795" selection-end="5795" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1384092789000" expanded="true" signature="7313:7335" placeholder="&lt;~&gt;" />
-              </folding>
+            <state line="164" column="13" selection-start="7018" selection-end="7018" vertical-scroll-proportion="0.8027923">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -191,10 +229,8 @@
       <file leaf-file-name="DbUnitRule.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitRule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="137" column="0" selection-start="5346" selection-end="5346" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1384092789000" expanded="true" signature="8696:8707" placeholder="&lt;~&gt;" />
-              </folding>
+            <state line="142" column="0" selection-start="5813" selection-end="5813" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -227,12 +263,12 @@
         <option value="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/MixedSetupOnClassAndMethodTest.java" />
         <option value="$PROJECT_DIR$/spring-test-dbunit/src/test/resources/META-INF/db/different/datasource/datasource1.xml" />
         <option value="$PROJECT_DIR$/spring-test-dbunit/src/test/resources/META-INF/db/different/datasource/datasource2.xml" />
-        <option value="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitRunner.java" />
         <option value="$PROJECT_DIR$/spring-test-dbunit/src/test/resources/log4j.xml" />
         <option value="$PROJECT_DIR$/spring-test-dbunit/src/test/resources/META-INF/create-example1.sql" />
         <option value="$PROJECT_DIR$/spring-test-dbunit/src/test/resources/META-INF/create-example2.sql" />
         <option value="$PROJECT_DIR$/spring-test-dbunit/src/test/java/com/github/springtestdbunit/dbunittestexecutionlistener/setup/DifferentDatasourcesTest.java" />
         <option value="$PROJECT_DIR$/spring-test-dbunit/src/test/resources/META-INF/dbunit-context.xml" />
+        <option value="$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitRunner.java" />
       </list>
     </option>
   </component>
@@ -689,7 +725,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942098" sideWeight="0.6458333" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27073553" sideWeight="0.6458333" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35416666" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35416666" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -770,11 +806,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitTestExecutionListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="0" selection-start="5506" selection-end="5506" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1384092789000" expanded="true" signature="4068:4076" placeholder="&lt;~&gt;" />
-            <marker date="1384092789000" expanded="true" signature="5572:5601" placeholder="&lt;~&gt;" />
-          </folding>
+        <state line="122" column="0" selection-start="5917" selection-end="5917" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -823,15 +856,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="45" selection-start="5795" selection-end="5795" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1384092789000" expanded="true" signature="7313:7335" placeholder="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/3.0.5.RELEASE/spring-beans-3.0.5.RELEASE.jar!/org/springframework/beans/BeanUtils.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="0" selection-start="3881" selection-end="3881" vertical-scroll-proportion="0.0">
@@ -848,7 +872,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spring-test-dbunit/src/test/resources/META-INF/dbunit-context.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="84" selection-start="771" selection-end="771" vertical-scroll-proportion="0.5113636">
+        <state line="11" column="84" selection-start="951" selection-end="951" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spring-test-dbunit/src/main/java/com/github/springtestdbunit/DbUnitRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="164" column="13" selection-start="7018" selection-end="7018" vertical-scroll-proportion="0.8027923">
           <folding />
         </state>
       </provider>

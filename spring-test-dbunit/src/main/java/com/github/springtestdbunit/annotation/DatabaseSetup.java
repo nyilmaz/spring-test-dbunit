@@ -15,16 +15,9 @@
  */
 package com.github.springtestdbunit.annotation;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import org.springframework.core.io.ClassRelativeResourceLoader;
-
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
+
+import java.lang.annotation.*;
 
 /**
  * Test annotation which indicates how to put a database into a know state before tests are run. This annotation can be
@@ -43,19 +36,6 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 @Target({ ElementType.TYPE, ElementType.METHOD })
 public @interface DatabaseSetup {
 
-	/**
-	 * Determines the type of {@link DatabaseOperation operation} that will be used to reset the database.
-	 * @return The type of operation used to reset the database
-	 */
-	DatabaseOperation type() default DatabaseOperation.CLEAN_INSERT;
-
-	/**
-	 * Provides the locations of the datasets that will be used to reset the database. Unless otherwise
-	 * {@link DbUnitConfiguration#dataSetLoader() configured} locations are {@link ClassRelativeResourceLoader relative}
-	 * to the class under test.
-	 * @return The dataset locations
-	 * @see DbUnitConfiguration#dataSetLoader()
-	 */
-	String[] value();
+   DatabaseConnectionSetup[] connections();
 
 }

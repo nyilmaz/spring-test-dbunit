@@ -15,23 +15,16 @@
  */
 package com.github.springtestdbunit.annotation;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import javax.sql.DataSource;
-
-import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.dataset.IDataSet;
-
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.dataset.DataSetLoader;
 import com.github.springtestdbunit.dataset.FlatXmlDataSetLoader;
 import com.github.springtestdbunit.operation.DatabaseOperationLookup;
 import com.github.springtestdbunit.operation.DefaultDatabaseOperationLookup;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+
+import javax.sql.DataSource;
+import java.lang.annotation.*;
 
 /**
  * Annotation that can be used to configure {@link DbUnitTestExecutionListener}.
@@ -50,7 +43,7 @@ public @interface DbUnitConfiguration {
 	 * either be a instance of {@link IDatabaseConnection} or a {@link DataSource}.
 	 * @return the bean name of the database connection
 	 */
-	String databaseConnection() default "";
+	String databaseConnections() default "";
 
 	/**
 	 * Returns the class that will be used to load {@link IDataSet} resources. The specified class must implement

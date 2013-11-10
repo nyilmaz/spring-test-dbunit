@@ -15,8 +15,11 @@
  */
 package com.github.springtestdbunit.dbunitrule.setup;
 
-import javax.sql.DataSource;
-
+import com.github.springtestdbunit.DbUnitRule;
+import com.github.springtestdbunit.annotation.DatabaseConnectionSetup;
+import com.github.springtestdbunit.annotation.DatabaseOperation;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.entity.EntityAssert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,14 +28,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.springtestdbunit.DbUnitRule;
-import com.github.springtestdbunit.annotation.DatabaseOperation;
-import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.github.springtestdbunit.entity.EntityAssert;
+import javax.sql.DataSource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/META-INF/dbunit-context.xml")
-@DatabaseSetup("/META-INF/db/insert.xml")
+@DatabaseSetup(connections = @DatabaseConnectionSetup(connectionName = "dataSource", value = "/META-INF/db/insert.xml"))
 @Transactional
 public class MixedSetupOnClassAndMethodTest {
 
@@ -46,13 +46,13 @@ public class MixedSetupOnClassAndMethodTest {
 	private EntityAssert entityAssert;
 
 	@Test
-	@DatabaseSetup("/META-INF/db/insert2.xml")
+	@DatabaseSetup(connections = @DatabaseConnectionSetup(connectionName = "dataSource", value = "/META-INF/db/insert2.xml", type = DatabaseOperation.INSERT))
 	public void testInsert() throws Exception {
 		this.entityAssert.assertValues("fromDbUnit", "fromDbUnit2");
 	}
 
 	@Test
-	@DatabaseSetup(type = DatabaseOperation.REFRESH, value = "/META-INF/db/refresh.xml")
+	@DatabaseSetup(connections = @DatabaseConnectionSetup(connectionName = "dataSource", type = DatabaseOperation.REFRESH, value = "/META-INF/db/refresh.xml"))
 	public void testRefresh() throws Exception {
 		this.entityAssert.assertValues("addedFromDbUnit", "replacedFromDbUnit");
 	}

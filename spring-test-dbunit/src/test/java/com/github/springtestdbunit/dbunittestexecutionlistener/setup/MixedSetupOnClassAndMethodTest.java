@@ -15,6 +15,7 @@
  */
 package com.github.springtestdbunit.dbunittestexecutionlistener.setup;
 
+import com.github.springtestdbunit.annotation.DatabaseConnectionSetup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ import com.github.springtestdbunit.entity.EntityAssert;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/META-INF/dbunit-context.xml")
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, TransactionDbUnitTestExecutionListener.class })
-@DatabaseSetup("/META-INF/db/insert.xml")
+@DatabaseSetup(connections = @DatabaseConnectionSetup(connectionName = "dataSource", value = "/META-INF/db/insert.xml"))
 @Transactional
 public class MixedSetupOnClassAndMethodTest {
 
@@ -40,13 +41,13 @@ public class MixedSetupOnClassAndMethodTest {
 	private EntityAssert entityAssert;
 
 	@Test
-	@DatabaseSetup("/META-INF/db/insert2.xml")
-	public void testInsert() throws Exception {
+   @DatabaseSetup(connections = @DatabaseConnectionSetup(connectionName = "dataSource", value = "/META-INF/db/insert2.xml", type = DatabaseOperation.INSERT))
+   public void testInsert() throws Exception {
 		this.entityAssert.assertValues("fromDbUnit", "fromDbUnit2");
 	}
 
 	@Test
-	@DatabaseSetup(type = DatabaseOperation.REFRESH, value = "/META-INF/db/refresh.xml")
+	@DatabaseSetup(connections = @DatabaseConnectionSetup(connectionName = "dataSource", type = DatabaseOperation.REFRESH, value = "/META-INF/db/refresh.xml"))
 	public void testRefresh() throws Exception {
 		this.entityAssert.assertValues("addedFromDbUnit", "replacedFromDbUnit");
 	}

@@ -15,32 +15,27 @@
  */
 package com.github.springtestdbunit;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.lang.reflect.Method;
-import java.sql.Connection;
-import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
-import org.dbunit.database.IDatabaseConnection;
-import org.junit.Test;
-import org.junit.internal.runners.statements.Fail;
-import org.junit.runners.model.FrameworkMethod;
-import org.junit.runners.model.Statement;
-
 import com.github.springtestdbunit.DbUnitRule.DbUnitTestContextAdapter;
 import com.github.springtestdbunit.dataset.DataSetLoader;
 import com.github.springtestdbunit.dataset.FlatXmlDataSetLoader;
 import com.github.springtestdbunit.operation.DatabaseOperationLookup;
 import com.github.springtestdbunit.operation.DefaultDatabaseOperationLookup;
 import com.github.springtestdbunit.testutils.NotSwallowedException;
+import org.dbunit.database.IDatabaseConnection;
+import org.junit.Test;
+import org.junit.internal.runners.statements.Fail;
+import org.junit.runners.model.FrameworkMethod;
+import org.junit.runners.model.Statement;
+
+import javax.sql.DataSource;
+import java.lang.reflect.Method;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class DbUnitRuleTest {
 
@@ -62,9 +57,12 @@ public class DbUnitRuleTest {
 		Blank target = new Blank();
 		FrameworkMethod method = new FrameworkMethod(target.getClass().getMethod("test"));
 		DbUnitRule rule = new DbUnitRule();
-		rule.setDataSource(dataSource);
+      Map<String, DataSource> dataSourceMap = new HashMap<String, DataSource>();
+      String dataSourceFieldName = "dataSourceFieldName";
+      dataSourceMap.put(dataSourceFieldName, dataSource);
+		rule.setDataSources(dataSourceMap);
 		DbUnitTestContextAdapter dbUnitTestContextAdapter = rule.new DbUnitTestContextAdapter(method, target);
-		dbUnitTestContextAdapter.getConnection().getConnection().createStatement();
+		dbUnitTestContextAdapter.getConnectionsMap().get(dataSourceFieldName).getConnection().createStatement();
 		verify(connection).createStatement();
 	}
 
@@ -73,10 +71,12 @@ public class DbUnitRuleTest {
 		IDatabaseConnection connection = mock(IDatabaseConnection.class);
 		Blank target = new Blank();
 		FrameworkMethod method = new FrameworkMethod(target.getClass().getMethod("test"));
+      Map<String, IDatabaseConnection> connectionMap = new HashMap<String, IDatabaseConnection>();
+      connectionMap.put("connection1", connection);
 		DbUnitRule rule = new DbUnitRule();
-		rule.setDatabaseConnection(connection);
+		rule.setDatabaseConnections(connectionMap);
 		DbUnitTestContextAdapter dbUnitTestContextAdapter = rule.new DbUnitTestContextAdapter(method, target);
-		assertSame(connection, dbUnitTestContextAdapter.getConnection());
+		assertSame(connection, dbUnitTestContextAdapter.getConnectionsMap().get("connection1"));
 	}
 
 	@Test
@@ -108,7 +108,8 @@ public class DbUnitRuleTest {
 		FrameworkMethod method = new FrameworkMethod(target.getClass().getMethod("test"));
 		DbUnitTestContextAdapter dbUnitTestContextAdapter = new DbUnitRule().new DbUnitTestContextAdapter(method,
 				target);
-		dbUnitTestContextAdapter.getConnection().getConnection().createStatement();
+      Connection conn = dbUnitTestContextAdapter.getConnectionsMap().get("dataSource").getConnection();
+      conn.createStatement();
 		verify(connection).createStatement();
 	}
 
@@ -119,7 +120,7 @@ public class DbUnitRuleTest {
 		FrameworkMethod method = new FrameworkMethod(target.getClass().getMethod("test"));
 		DbUnitTestContextAdapter dbUnitTestContextAdapter = new DbUnitRule().new DbUnitTestContextAdapter(method,
 				target);
-		assertSame(connection, dbUnitTestContextAdapter.getConnection());
+		assertSame(connection, dbUnitTestContextAdapter.getConnectionsMap().get("databaseConnection"));
 	}
 
 	@Test
@@ -129,7 +130,7 @@ public class DbUnitRuleTest {
 		DbUnitTestContextAdapter dbUnitTestContextAdapter = new DbUnitRule().new DbUnitTestContextAdapter(method,
 				target);
 		try {
-			dbUnitTestContextAdapter.getConnection();
+			dbUnitTestContextAdapter.getConnectionsMap();
 		} catch (IllegalStateException e) {
 			assertEquals("Unable to locate database connection for DbUnitRule.  "
 					+ "Ensure that a DataSource or IDatabaseConnection is available as "
@@ -137,22 +138,36 @@ public class DbUnitRuleTest {
 		}
 	}
 
-	@Test
-	public void shouldFailIfMultipleDataSources() throws Exception {
-		WithMultipleDataSource target = new WithMultipleDataSource();
-		FrameworkMethod method = new FrameworkMethod(target.getClass().getMethod("test"));
-		DbUnitTestContextAdapter dbUnitTestContextAdapter = new DbUnitRule().new DbUnitTestContextAdapter(method,
-				target);
-		try {
-			dbUnitTestContextAdapter.getConnection().getConnection().createStatement();
-		} catch (IllegalStateException e) {
-			assertEquals(
-					"Unable to read a single value from multiple fields of "
-							+ "type javax.sql.DataSource from class com.github.springtestdbunit.DbUnitRuleTest$WithMultipleDataSource",
-					e.getMessage());
-		}
+   @Test
+   public void shouldFindMultipleDataSources() throws Exception{
+      Connection connection1 = mock(Connection.class);
+      Connection connection2 = mock(Connection.class);
+      WithMultipleDataSource target = new WithMultipleDataSource(connection1, connection2);
+      FrameworkMethod method = new FrameworkMethod(target.getClass().getMethod("test"));
+      DbUnitTestContextAdapter dbUnitTestContextAdapter = new DbUnitRule().new DbUnitTestContextAdapter(method, target);
+      Map<String, IDatabaseConnection> connectionMap = dbUnitTestContextAdapter.getConnectionsMap();
+      assertTrue(connectionMap.containsKey("dataSource1"));
+      assertTrue(connectionMap.containsKey("dataSource2"));
+      connectionMap.get("dataSource1").getConnection().createStatement();
+      connectionMap.get("dataSource2").getConnection().createStatement();
+      verify(connection1).createStatement();
+      verify(connection2).createStatement();
+   }
 
-	}
+   @Test
+   public void shouldFindDataSourceAndConnection() throws Exception {
+      Connection connection1 = mock(Connection.class);
+      IDatabaseConnection connection2 = mock(IDatabaseConnection.class);
+      WithDataSourceAndConnection target = new WithDataSourceAndConnection(connection2, connection1);
+      FrameworkMethod method = new FrameworkMethod(target.getClass().getMethod("test"));
+      DbUnitTestContextAdapter dbUnitTestContextAdapter = new DbUnitRule().new DbUnitTestContextAdapter(method, target);
+      Map<String, IDatabaseConnection> connectionMap = dbUnitTestContextAdapter.getConnectionsMap();
+      assertTrue(connectionMap.containsKey("connection"));
+      assertTrue(connectionMap.containsKey("dataSource"));
+      assertEquals(connection2, connectionMap.get("connection"));
+      connectionMap.get("dataSource").getConnection().createStatement();
+      verify(connection1).createStatement();
+   }
 
 	@Test
 	public void shouldFindDataSetLoaderFromTestCase() throws Exception {
@@ -237,11 +252,17 @@ public class DbUnitRuleTest {
 	}
 
 	static class WithMultipleDataSource extends Blank {
-		@SuppressWarnings("unused")
 		private DataSource dataSource1;
-		@SuppressWarnings("unused")
+
 		private DataSource dataSource2;
-	}
+
+      public WithMultipleDataSource(Connection connection1, Connection connection2) throws SQLException{
+         this.dataSource1 = mock(DataSource.class);
+         this.dataSource2 = mock(DataSource.class);
+         when(this.dataSource1.getConnection()).thenReturn(connection1);
+         when(this.dataSource2.getConnection()).thenReturn(connection2);
+      }
+   }
 
 	static class WithDataSetLoader extends Blank {
 		private DataSetLoader loader = mock(DataSetLoader.class);
@@ -250,4 +271,16 @@ public class DbUnitRuleTest {
 	static class WithDatabaseOperationLookup extends Blank {
 		private DatabaseOperationLookup lookup = mock(DatabaseOperationLookup.class);
 	}
+
+   static class WithDataSourceAndConnection extends Blank {
+      private DataSource dataSource;
+      @SuppressWarnings("unused")
+      private IDatabaseConnection connection;
+
+      WithDataSourceAndConnection(IDatabaseConnection connection1, Connection connection2) throws SQLException{
+         this.connection = connection1;
+         this.dataSource = mock(DataSource.class);
+         when(this.dataSource.getConnection()).thenReturn(connection2);
+      }
+   }
 }

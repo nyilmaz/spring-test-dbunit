@@ -15,12 +15,9 @@
  */
 package com.github.springtestdbunit;
 
-import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
+import com.github.springtestdbunit.annotation.*;
+import com.github.springtestdbunit.assertion.DatabaseAssertion;
+import com.github.springtestdbunit.dataset.DataSetLoader;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dbunit.database.IDatabaseConnection;
@@ -29,12 +26,9 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
-import com.github.springtestdbunit.annotation.DatabaseOperation;
-import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.github.springtestdbunit.annotation.DatabaseTearDown;
-import com.github.springtestdbunit.annotation.ExpectedDatabase;
-import com.github.springtestdbunit.assertion.DatabaseAssertion;
-import com.github.springtestdbunit.dataset.DataSetLoader;
+import java.lang.annotation.Annotation;
+import java.sql.SQLException;
+import java.util.*;
 
 /**
  * Internal delegate class used to run tests with support for {@link DatabaseSetup &#064;DatabaseSetup},
@@ -54,7 +48,10 @@ class DbUnitRunner {
 	 */
 	public void beforeTestMethod(DbUnitTestContext testContext) throws Exception {
 		Collection<DatabaseSetup> annotations = getAnnotations(testContext, DatabaseSetup.class);
-		setupOrTeardown(testContext, true, AnnotationAttributes.get(annotations));
+
+      for(DatabaseSetup annotation : annotations) {
+         setupOrTeardown(testContext, true, AnnotationAttributes.get(Arrays.asList(annotation.connections())));
+      }
 	}
 
 	/**
@@ -77,9 +74,16 @@ class DbUnitRunner {
 				}
 			}
 		} finally {
-			testContext.getConnection().close();
+			closeConnections(testContext);
 		}
 	}
+
+   private void closeConnections(DbUnitTestContext testContext) throws SQLException{
+      Map<String, IDatabaseConnection> connectionMap = testContext.getConnectionsMap();
+      for(IDatabaseConnection connection : connectionMap.values()) {
+         connection.close();
+      }
+   }
 
 	private <T extends Annotation> Collection<T> getAnnotations(DbUnitTestContext testContext, Class<T> annotationType) {
 		List<T> annotations = new ArrayList<T>();
@@ -103,18 +107,21 @@ class DbUnitRunner {
 			}
 			return;
 		}
-		IDatabaseConnection connection = testContext.getConnection();
-		IDataSet actualDataSet = connection.createDataSet();
-		for (ExpectedDatabase annotation : annotations) {
-			IDataSet expectedDataSet = loadDataset(testContext, annotation.value());
-			if (expectedDataSet != null) {
-				if (logger.isDebugEnabled()) {
-					logger.debug("Veriftying @DatabaseTest expectation using " + annotation.value());
-				}
-				DatabaseAssertion assertion = annotation.assertionMode().getDatabaseAssertion();
-				assertion.assertEquals(expectedDataSet, actualDataSet);
-			}
-		}
+		Collection<IDatabaseConnection> connections = testContext.getConnectionsMap().values();
+      for(IDatabaseConnection connection : connections) {
+         IDataSet actualDataSet = connection.createDataSet();
+         for (ExpectedDatabase annotation : annotations) {
+            IDataSet expectedDataSet = loadDataset(testContext, annotation.value());
+            if (expectedDataSet != null) {
+               if (logger.isDebugEnabled()) {
+                  logger.debug("Veriftying @DatabaseTest expectation using " + annotation.value());
+               }
+               DatabaseAssertion assertion = annotation.assertionMode().getDatabaseAssertion();
+               assertion.assertEquals(expectedDataSet, actualDataSet);
+            }
+         }
+      }
+
 	}
 
 	private IDataSet loadDataset(DbUnitTestContext testContext, String dataSetLocation) throws Exception {
@@ -128,27 +135,37 @@ class DbUnitRunner {
 		return null;
 	}
 
-	private void setupOrTeardown(DbUnitTestContext testContext, boolean isSetup,
-			Collection<AnnotationAttributes> annotations) throws Exception {
-		IDatabaseConnection connection = testContext.getConnection();
-		DatabaseOperation lastOperation = null;
-		for (AnnotationAttributes annotation : annotations) {
-			for (String dataSetLocation : annotation.getValue()) {
-				DatabaseOperation operation = annotation.getType();
-				org.dbunit.operation.DatabaseOperation dbUnitDatabaseOperation = getDbUnitDatabaseOperation(
-						testContext, operation, lastOperation);
-				IDataSet dataSet = loadDataset(testContext, dataSetLocation);
-				if (dataSet != null) {
-					if (logger.isDebugEnabled()) {
-						logger.debug("Executing " + (isSetup ? "Setup" : "Teardown") + " of @DatabaseTest using "
-								+ operation + " on " + dataSetLocation);
-					}
-					dbUnitDatabaseOperation.execute(connection, dataSet);
-					lastOperation = operation;
-				}
-			}
-		}
-	}
+   private void setupOrTeardown(DbUnitTestContext testContext, boolean isSetup,
+                                Collection<AnnotationAttributes> annotations) throws Exception {
+      Map<String, IDatabaseConnection> connectionsMap = testContext.getConnectionsMap();
+      DatabaseOperation lastOperation = null;
+      IDatabaseConnection connection = connectionsMap.values().iterator().next();
+
+      for(AnnotationAttributes annotation : annotations) {
+         DatabaseOperation operation = annotation.getType();
+         String connectionName = annotation.getConnectionName();
+         for(String dataSetLocation : annotation.getValue()) {
+
+            org.dbunit.operation.DatabaseOperation dbUnitDatabaseOperation =
+               getDbUnitDatabaseOperation(testContext, operation, lastOperation);
+            IDataSet dataSet = loadDataset(testContext, dataSetLocation);
+            if(dataSet != null) {
+               if(logger.isDebugEnabled()) {
+                  logger.debug("Executing " + (isSetup ? "Setup" : "Teardown") + " of @DatabaseTest using "
+                                  + operation + " on " + dataSetLocation);
+               }
+               if(StringUtils.hasText(connectionName)) {
+                  connection = connectionsMap.get(connectionName);
+                  if(logger.isDebugEnabled()) {
+                     logger.info("Loading dataset " + dataSetLocation + " to connection:" + connectionName);
+                  }
+               }
+                  dbUnitDatabaseOperation.execute(connection, dataSet);
+               lastOperation = operation;
+            }
+         }
+      }
+   }
 
 	private org.dbunit.operation.DatabaseOperation getDbUnitDatabaseOperation(DbUnitTestContext testContext,
 			DatabaseOperation operation, DatabaseOperation lastOperation) {
@@ -167,12 +184,15 @@ class DbUnitRunner {
 
 		private String[] value;
 
-		public AnnotationAttributes(Annotation annotation) {
-			Assert.state((annotation instanceof DatabaseSetup) || (annotation instanceof DatabaseTearDown),
+      private String connectionName;
+
+      public AnnotationAttributes(Annotation annotation) {
+			Assert.state((annotation instanceof DatabaseConnectionSetup) || (annotation instanceof DatabaseTearDown),
 					"Only DatabaseSetup and DatabaseTearDown annotations are supported");
 			Map<String, Object> attributes = AnnotationUtils.getAnnotationAttributes(annotation);
 			this.type = (DatabaseOperation) attributes.get("type");
 			this.value = (String[]) attributes.get("value");
+         this.connectionName = (String) attributes.get("connectionName");
 		}
 
 		public DatabaseOperation getType() {
@@ -190,5 +210,9 @@ class DbUnitRunner {
 			}
 			return annotationAttributes;
 		}
-	}
+
+      public String getConnectionName() {
+         return connectionName;
+      }
+   }
 }

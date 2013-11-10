@@ -15,14 +15,9 @@
  */
 package com.github.springtestdbunit.annotation;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
+
+import java.lang.annotation.*;
 
 /**
  * Test annotation which indicates how to put a database into a know state after tests have run. This annotation can be

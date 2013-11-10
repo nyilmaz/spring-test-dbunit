@@ -15,6 +15,7 @@
  */
 package com.github.springtestdbunit.dbunittestexecutionlistener.setup;
 
+import com.github.springtestdbunit.annotation.DatabaseConnectionSetup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class DeleteSetupOnMethodTest {
 	private EntityAssert entityAssert;
 
 	@Test
-	@DatabaseSetup(type = DatabaseOperation.DELETE, value = "/META-INF/db/delete.xml")
+	@DatabaseSetup(connections = @DatabaseConnectionSetup(connectionName = "dataSource", type = DatabaseOperation.DELETE, value = "/META-INF/db/delete.xml"))
 	public void test() throws Exception {
 		this.entityAssert.assertValues("existing2");
 	}

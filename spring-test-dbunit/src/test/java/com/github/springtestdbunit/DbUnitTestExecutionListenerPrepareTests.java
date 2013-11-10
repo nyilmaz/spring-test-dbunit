@@ -211,7 +211,7 @@ public class DbUnitTestExecutionListenerPrepareTests {
 
 	@ContextConfiguration(loader = LocalApplicationContextLoader.class)
 	@TestExecutionListeners(DbUnitTestExecutionListener.class)
-	@DbUnitConfiguration(databaseConnection = "customBean", dataSetLoader = CustomDataSetLoader.class, databaseOperationLookup = CustomDatabaseOperationLookup.class)
+	@DbUnitConfiguration(databaseConnections = "customBean", dataSetLoader = CustomDataSetLoader.class, databaseOperationLookup = CustomDatabaseOperationLookup.class)
 	private static class CustomConfiguration {
 
 	}
